@@ -21,6 +21,8 @@ file .env:
 mind 101 string in chek.py  (for msgnum in msgnums[0].split()[10:18]:)
 slice messages you want to parse
 
+![Screenshot from 2024-04-03 16-14-27](https://github.com/Andreymazo/EmailManager/assets/116811819/49181dcd-e60d-4fd5-b3e3-eb8a15365c5d)
+
 
 
 
