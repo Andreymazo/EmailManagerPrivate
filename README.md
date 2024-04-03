@@ -11,8 +11,7 @@ file .env:
     DB_USER=
     DB_PORT=
     DB_HOST=
-    BASE_URL=http://localhost:8000
-
+    BASE_URL=
     EMAIL_HOST_USER = 
     EMAIL_HOST_PASSWORD = 
     yandex_password = 
