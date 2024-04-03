@@ -147,6 +147,12 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
+SECOND_EMAIL_HOST = 'smtp.yandex.ru'
+SECOND_EMAIL_PORT = 465
+SECOND_EMAIL_USE_SSL = True
+SECOND_EMAIL_HOST_USER = 'andrewmazo@yandex.ru'
+SECOND_EMAIL_HOST_PASSWORD = 'jasxhyypvinwcrfq'
+
 #### For yandex sending ####
 # EMAIL_HOST = 'smtp.yandex.ru'
 # EMAIL_PORT = 465
