@@ -61,7 +61,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR , 'env/lib/python3.10/site-packages/django/forms/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,26 +140,19 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-EMAIL_HOST = 'smtp.mail.ru'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 EMAIL_PORT = 2525#465
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_HOST = os.getenv('EMAIL_HOST')#'imap.mail.ru'#
+EMAIL_HOST_USER = os.getenv('EMAIL_USER')#'andreymazo@mail.ru'# 
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')#'tCdHZrMJA41mCchy3mxk'#
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
 
-SECOND_EMAIL_HOST = 'smtp.yandex.ru'
-SECOND_EMAIL_PORT = 465
+SECOND_EMAIL_PORT = 2525 
 SECOND_EMAIL_USE_SSL = True
-SECOND_EMAIL_HOST_USER = 'andrewmazo@yandex.ru'
-SECOND_EMAIL_HOST_PASSWORD = 'jasxhyypvinwcrfq'
-
-#### For yandex sending ####
-# EMAIL_HOST = 'smtp.yandex.ru'
-# EMAIL_PORT = 465
-# EMAIL_USE_SSL = True
-# EMAIL_HOST_USER = 'andrewmazo@yandex.ru'
-# EMAIL_HOST_PASSWORD = 'jasxhyypvinwcrfq'
-
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-# SERVER_EMAIL = EMAIL_HOST_USER
-# EMAIL_ADMIN = EMAIL_HOST_USER
+SECOND_EMAIL_USE_TSL = False
+SECOND_EMAIL_HOST = os.getenv('SECOND_EMAIL_HOST')
+SECOND_EMAIL_HOST_USER = os.getenv('SECOND_EMAIL_USER')
+SECOND_EMAIL_HOST_PASSWORD = os.getenv('SECOND_EMAIL_PASSWORD')

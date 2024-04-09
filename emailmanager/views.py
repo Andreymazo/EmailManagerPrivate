@@ -7,32 +7,56 @@ from django.template.response import TemplateResponse
 
 
 from config.settings import EMAIL_HOST, EMAIL_HOST_PASSWORD, EMAIL_HOST_USER
-from emailmanager.forms import HostChoice
-from emailmanager.functns_for_help import charset_variants, decoded_header, matched_in_str, matched_lsts, matched_str
+from emailmanager.forms import HostChoice_1, HostChoice_2
+from emailmanager.functns_for_help import charset_variants, decoded_header, dupl, get_variants, matched_in_str, matched_lsts, matched_str
 
 def home(request):
-    host_form = HostChoice(request.POST)
-    hosts = HostChoice.hosts.append(host_form)
-    
+    host_form_1 = HostChoice_1(request.POST)
+    host_form_2 = HostChoice_2(request.POST)
+   #  hosts = HostChoice.hosts.append(host_form)
+    hosts = [] 
+
     context = {
-        'host_form':host_form,
-        'hosts':hosts,
+        'host_form_1':host_form_1,
+        'host_form_2':host_form_2,
+      #   'hosts':hosts,
         
     }
     if request.method == "POST":
-        if host_form.is_valid():
-             hosts = host_form.cleaned_data['hosts']
+        if host_form_1.is_valid() and host_form_2.is_valid():
+             host_1 = host_form_1.cleaned_data['host_1']
+             host_2 = host_form_2.cleaned_data['host_2']
+             email_1 = host_form_1.cleaned_data['email_1']
+             email_2 = host_form_2.cleaned_data['email_2']
+             password_1 = host_form_1.cleaned_data['password_1']
+             password_2 = host_form_2.cleaned_data['password_2']
+             hosts.append(((host_1, email_1, password_1), (host_2, email_2, password_2)))
+            #  hosts = dupl(hosts)
+             print(hosts)
+             get_variants(hosts)
              context = {
-        'host_form':host_form,
+        'host_form_1':host_form_1,
+        'host_form_2':host_form_2,
         'hosts':hosts,
+        'email_1': email_1,
+        'email_2':email_2
         
             }
+             return TemplateResponse(request, 'emailmanager/templates/emailmanager/home.html', context)
              
     else:
-       host_form = HostChoice()
+       host_form_1 = HostChoice_1()
+       host_form_2 = HostChoice_2()
 
-    return TemplateResponse(request, 'worktimeprivate/templates/worktimeprivate/employee_employer_lists_fast.html', context)
-
+    return TemplateResponse(request, 'emailmanager/templates/emailmanager/home.html', context)
+###########################
+   # вывод формы по полям
+   #  {{ host_form.non_field_errors }}
+   #  <div class="fieldWrapper">
+   #      {{ host_form.password }}
+   #  </div>}
+   
+   #############################
 
 charset_lst = ['utf-8', 'koi8-r', 'windows-1251',  'iso-8859-1', 'quoted-printable', 'unicode-escape']
 

@@ -1,8 +1,14 @@
 
 
-    <form action="/employee_create_with_doubleform/" method="post" enctype="multipart/form-data" id="employee_create_with_doubleform">
+    <form action="/" method="post" enctype="multipart/form-data" id="employee_create_with_doubleform">
     {% csrf_token %}
-    {{custom_user_form.as_p}}
-    {{employee_form.as_p}}
+   
+    {%for item in hosts%}
+        {{item}}
+    {%endfor%}
+
+    {{host_form_1.as_p}}
+
+    {{host_form_2.as_p}}
     <button class="btn btn-outline-secondary" type="submit" id="input-group-text">Save</button>
     </form>
